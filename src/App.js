@@ -33,7 +33,7 @@ class App extends Component {
     })}
   }
   codeDate=(event)=>{
-    if (event.target.value.match(/^[0-9]+$/g))
+    if ((event.target.value.match(/^[0-9]+$/g))&&(Number(event.target.value.slice(0,2))<13  ))
     {this.setState({
       date:event.target.value.slice(0,2).padEnd(2,"x")+"/"+event.target.value.slice(2,4).padEnd(2,"x")
     })}
@@ -52,16 +52,16 @@ render(){
             <div className="card">
     <p className="num">{this.state.num}</p>
            <p className="date">{this.state.date}</p>
-           <p className="name">{this.state.name}</p>
+           <p className="name">{this.state.name.padEnd(12,"x")}</p>
 
         </div>
         <form className="form">
                 Card Number:
             <input type="text"onChange={this.codeNum} maxLength="16"/>
             Card Holder:
-            <input type="text"onChange={this.codeName}/>
+            <input type="text"onChange={this.codeName} maxLength="12"/>
             Valid Date:
-            <input type="text"onChange={this.codeDate}/>
+            <input type="text"onChange={this.codeDate}maxLength="4"/>
             </form>
   </div>)
 }
